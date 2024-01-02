@@ -8,7 +8,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 export type RootStackParams = {
   SplashScreen: undefined;
   LoginScreen: undefined;
-  MainScreen: undefined;
+
   DrawerNavigator: NavigatorScreenParams<DrawerStackParams>;
   TabNavigator: NavigatorScreenParams<TabStackParams>;
 };
@@ -16,20 +16,16 @@ export type RootStackParams = {
 export type TabStackParams = {
   MainNavigator: NavigatorScreenParams<MainStackParams>;
   ProductScreen: undefined;
-  VideoScreen: undefined;
+  MainScreen: undefined;
 };
 
 export type MainStackParams = {
   ProductSubCategoryScreen?: {id: string; title: string};
+  MainScreen: undefined;
 };
 
 export type DrawerStackParams = {
   MainScreen: undefined;
-  ProfilScreen: undefined;
-  ApplicationScreen: undefined;
-  WishlistScreen: undefined;
-  CommunicationScreen: undefined;
-  ProfilSettingChange: undefined;
 };
 
 // PROPS

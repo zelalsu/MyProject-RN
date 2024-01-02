@@ -9,6 +9,7 @@ export type ThemeSliceParams = {
 };
 // USER
 export type UserInfoParams = {
+  username: string;
   firstName: string;
   id: string;
   language: null;
@@ -16,7 +17,6 @@ export type UserInfoParams = {
   refreshToken: string;
   status: number;
   tokenString: string;
-  username: string;
 };
 export type UserSessionInfoParams = {
   tokenString: string;

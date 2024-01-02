@@ -13,15 +13,17 @@ import {
 import {thunk} from 'redux-thunk';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {loginApi} from './api/login';
-import user from './slices/user';
+import userReducer from './slices/user';
 import apiMiddleware from './api/apiMiddleware';
+import routeReducer from './slices/route';
 
 // Reducer
 // Api
 
 const rootReducer = combineReducers({
   [loginApi.reducerPath]: loginApi.reducer,
-  user: user,
+  user: userReducer,
+  route: routeReducer,
   [apiMiddleware.reducerPath]: apiMiddleware.reducer,
 });
 const persistConfig = {

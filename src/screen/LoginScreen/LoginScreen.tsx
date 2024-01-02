@@ -1,57 +1,55 @@
-import {View, Text, Alert} from 'react-native';
+import {View, Text, Alert, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Button, TextInput} from 'react-native-paper';
 import style from './style';
-import {RootStackScreenProps} from '../../navigation/types';
 import {useLazyLoginQuery} from '../../store/api/login';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import useApiResponse from '../../hooks/useApiResponse';
 import {LoginApiResponseParams} from '../../store/Api/types';
-import {batch, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {setUserInfo} from '../../store/slices/user';
+import {setRoute} from '../../store/slices/route';
+import {useNavigation} from '@react-navigation/native';
+import {useAppSelector} from '../../store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LoginScreen = ({navigation}: RootStackScreenProps<'LoginScreen'>) => {
+const LoginScreen = () => {
   const [login, setLogin] = useState({
-    username: '',
-    password: '',
+    username: 'utku.utkan@arunayazilim.com',
+    password: 'Arn2014.,',
   });
-  const [loginApiTrigger, {isSuccess}] = useLazyLoginQuery();
+  const storedUserInfo = useAppSelector(state => state.user.user);
+
+  useEffect(() => {
+    // Önceki oturum bilgilerini kontrol et
+    if (storedUserInfo && storedUserInfo.tokenString) {
+      // Geçerli bir token ve kullanıcı bilgisi varsa, oturumu açmış kabul et
+      dispatch(setRoute({path: 'RootNavigator'}));
+    }
+  }, []);
+  const [loginApiTrigger] = useLazyLoginQuery();
 
   const dispatch = useDispatch();
 
   const apiResponse = useApiResponse({
     successHandler: (v: LoginApiResponseParams) => {
-      const userInfo = {username: v.user.username, user: v.user};
-      console.log(userInfo);
+      const userInfo = {username: v.username, user: v};
 
-      // const updatedUserSessionInfo =
-      //   ...userSessionInfo,
-      //   token: v.data.token,
-      // };
-      dispatch(setUserInfo(userInfo));
-      // dispatch(setUserSessionInfo(updatedUserSessionInfo));
-      // dispatch(setUserRemember(rememberMe));
-      // dispatch(setRoute({ path: 'RootNavigator' }));
+      dispatch(setUserInfo(userInfo.user));
+      dispatch(setRoute({path: 'RootNavigator'}));
     },
 
     errorHandler: (error: any) => {
-      // console.log(error + 'message');
+      console.log(error.data.message);
     },
   });
+
   const loginHandler = () => {
     if (login.username !== '' && login.password !== '') {
       loginApiTrigger({
         username: login.username.toLowerCase(),
         password: login.password,
       }).then(res => {
-        // apiResponse.apiResponseHandler({res});
-        if (isSuccess) {
-          Alert.alert('Giriş yaptınız');
-          navigation.navigate('MainScreen');
-          apiResponse.apiResponseHandler({res});
-        } else {
-          Alert.alert(res?.error?.data.message);
-        }
+        apiResponse.apiResponseHandler({res});
       });
     } else {
       Alert.alert('Lütfen boş bırakmayınız');
@@ -75,10 +73,18 @@ const LoginScreen = ({navigation}: RootStackScreenProps<'LoginScreen'>) => {
             label="Password"
             value={login.password}
             mode="outlined"
+            right={
+              <TouchableOpacity
+                onPress={() => setLogin({...login, password: ''})}>
+                <Text style={{color: 'red'}}>sdlkf</Text>
+              </TouchableOpacity>
+            }
             onChangeText={value => {
               setLogin({...login, password: value});
             }}
           />
+
+          {apiResponse.modalView()}
           <View style={{marginVertical: 20}}>
             <Button mode="contained" onPress={loginHandler}>
               Giriş yap

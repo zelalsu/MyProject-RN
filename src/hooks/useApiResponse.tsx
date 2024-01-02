@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  Modal,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import {ApiResponseHandler, UseApiParams} from './types';
+import {window} from '@src/constant/dimension';
 
 const useApiResponse = ({successHandler, errorHandler}: UseApiParams) => {
   const [modalIsVisible, setModalIsVisible] = useState({
@@ -10,7 +18,6 @@ const useApiResponse = ({successHandler, errorHandler}: UseApiParams) => {
   });
 
   const apiResponseHandler = ({res}: ApiResponseHandler) => {
-    console.log(res);
     if (res.isError) {
       if (res.error?.status === 'FETCH_ERROR') {
         console.log('internetin kapalı');
@@ -32,6 +39,8 @@ const useApiResponse = ({successHandler, errorHandler}: UseApiParams) => {
         res.error.status !== 'TIMEOUT_ERROR' &&
         res.error.status !== 'PARSING_ERROR'
       ) {
+        console.log('burda mısın');
+
         setModalIsVisible({
           status: 'error',
           message: res.error.data.message,
@@ -49,31 +58,54 @@ const useApiResponse = ({successHandler, errorHandler}: UseApiParams) => {
       successHandler?.(res.data);
     }
   };
-  console.log(modalIsVisible.status);
+  const closeModal = () => {
+    setModalIsVisible({
+      status: '',
+      message: '',
+      isVisible: false,
+    });
+  };
 
   const modalView = () => {
     return (
-      <>
-        {modalIsVisible.isVisible && modalIsVisible.status === 'success' && (
-          <Text style={styles.text}>Başarılı</Text>
+      <View style={styles.modalContainer}>
+        {modalIsVisible.status === 'success' && <ActivityIndicator />}
+        {modalIsVisible.status === 'error' && (
+          <View style={styles.errorText}>
+            <Text style={styles.closeButtonText}>{modalIsVisible.message}</Text>
+            {/* <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+              <Text style={styles.closeButtonText}>X</Text>
+            </TouchableOpacity> */}
+          </View>
         )}
-        {modalIsVisible.isVisible && modalIsVisible.status === 'error' && (
-          <Text style={styles.text}>{modalIsVisible.message}</Text>
-        )}
-      </>
+      </View>
     );
   };
 
   return {modalView, apiResponseHandler};
 };
-
 const styles = StyleSheet.create({
-  text: {
-    backgroundColor: 'red',
+  modalContainer: {marginTop: 5},
+  successText: {
     padding: 10,
     borderRadius: 5,
-    color: 'white',
-    textAlign: 'center',
+    color: 'green',
+  },
+  errorText: {
+    borderRadius: 5,
+    alignItems: 'center',
+    flexDirection: 'row', // Satır boyunca düzenleme
+  },
+
+  closeButton: {
+    borderRadius: 5,
+    marginRight: 10, // Sağdan boşluk ekleyerek X'i ayır
+  },
+
+  closeButtonText: {
+    padding: 5,
+    borderRadius: 30,
+    color: 'red',
   },
 });
 

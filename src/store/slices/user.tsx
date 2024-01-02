@@ -24,7 +24,7 @@ export const userSlice = createSlice({
       state: UserSliceParams,
       action: PayloadAction<UserInfoParams>,
     ) => {
-      state.user = action.payload;
+      state.user = {...action.payload}; // Kopyalama işlemi yaparak mevcut kullanıcı bilgilerini koru
     },
 
     setUserInitialState: () => {
@@ -33,9 +33,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const {
-  setUserInfo,
-
-  setUserInitialState,
-} = userSlice.actions;
+export const {setUserInfo, setUserInitialState} = userSlice.actions;
 export default userSlice.reducer;

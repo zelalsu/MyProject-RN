@@ -1,19 +1,43 @@
-import {createStackNavigator} from '@react-navigation/stack';
-import {RootStackParams} from './types';
-import LoginScreen from '../screen/LoginScreen/LoginScreen';
-import MainScreen from '../screen/MainScreen/MainScreen';
+import React from 'react';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator<RootStackParams>();
+// Route
+import * as navigator from './routeRoutes';
 
-function Navigation() {
+// Constant
+
+import {useAppSelector} from '../store';
+
+const Stack = createNativeStackNavigator();
+
+const routeHandler = (routeName: string) => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        animation: 'slide_from_right',
       }}>
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="MainScreen" component={MainScreen} />
+      <Stack.Screen
+        name={routeName}
+        component={navigator[routeName as keyof typeof navigator]}
+      />
     </Stack.Navigator>
   );
+};
+function RootNavigator() {
+  const routeName = useAppSelector(state => state.route.path);
+  return routeHandler(routeName);
 }
-export default Navigation;
+
+export default function Navigation() {
+  return (
+    <NavigationContainer>
+      <RootNavigator />
+    </NavigationContainer>
+  );
+}
