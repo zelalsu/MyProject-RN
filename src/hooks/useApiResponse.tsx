@@ -1,14 +1,6 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  StyleSheet,
-  Modal,
-  View,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import {Text, StyleSheet, View, ActivityIndicator} from 'react-native';
 import {ApiResponseHandler, UseApiParams} from './types';
-import {window} from '@src/constant/dimension';
 
 const useApiResponse = ({successHandler, errorHandler}: UseApiParams) => {
   const [modalIsVisible, setModalIsVisible] = useState({
@@ -39,16 +31,16 @@ const useApiResponse = ({successHandler, errorHandler}: UseApiParams) => {
         res.error.status !== 'TIMEOUT_ERROR' &&
         res.error.status !== 'PARSING_ERROR'
       ) {
-        console.log('burda mısın');
-
         setModalIsVisible({
           status: 'error',
           message: res.error.data.message,
           isVisible: true,
         });
       }
+
       errorHandler?.(res.error);
     }
+
     if (res.isSuccess) {
       setModalIsVisible({
         status: 'success',
@@ -58,24 +50,23 @@ const useApiResponse = ({successHandler, errorHandler}: UseApiParams) => {
       successHandler?.(res.data);
     }
   };
-  const closeModal = () => {
-    setModalIsVisible({
-      status: '',
-      message: '',
-      isVisible: false,
-    });
-  };
 
   const modalView = () => {
     return (
       <View style={styles.modalContainer}>
-        {modalIsVisible.status === 'success' && <ActivityIndicator />}
+        {modalIsVisible.status === 'success' && (
+          <>
+            <ActivityIndicator />
+            <View style={styles.errorText}>
+              <Text style={styles.closeButtonText}>
+                {modalIsVisible.message}
+              </Text>
+            </View>
+          </>
+        )}
         {modalIsVisible.status === 'error' && (
           <View style={styles.errorText}>
             <Text style={styles.closeButtonText}>{modalIsVisible.message}</Text>
-            {/* <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-              <Text style={styles.closeButtonText}>X</Text>
-            </TouchableOpacity> */}
           </View>
         )}
       </View>
@@ -94,12 +85,12 @@ const styles = StyleSheet.create({
   errorText: {
     borderRadius: 5,
     alignItems: 'center',
-    flexDirection: 'row', // Satır boyunca düzenleme
+    flexDirection: 'row',
   },
 
   closeButton: {
     borderRadius: 5,
-    marginRight: 10, // Sağdan boşluk ekleyerek X'i ayır
+    marginRight: 10,
   },
 
   closeButtonText: {

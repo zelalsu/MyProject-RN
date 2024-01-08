@@ -4,18 +4,14 @@ import {useNavigation, useTheme} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-// Svg
-// import Close from '@assets/svg/New/Close.svg';
-// import Back from '@assets/svg/Home/Back.svg';
-
 // Constant
 
 // Type
 
 import {HeaderProps} from './types';
-// import {MyTheme} from '@src/constants/types';
-// import {fontFamily} from '@src/constants';
+
 import {headerHeight} from '../../constant/dimension';
+import {MyTheme} from '@src/constant/types';
 // import {Icon} from 'react-native-paper';
 
 const Header = ({
@@ -26,7 +22,9 @@ const Header = ({
   insetTop,
   textOptions,
 }: HeaderProps) => {
+  const theme = useTheme();
   const navigation = useNavigation();
+  const styles = React.useMemo(() => getStyles(theme), [theme]);
 
   const insets = useSafeAreaInsets();
   const containerStyle = StyleSheet.flatten(style);
@@ -96,9 +94,9 @@ const Header = ({
           {leftOptions?.icon ? (
             leftOptions.icon
           ) : presentation === 'close' ? (
-            <Icon name="arrowdown" size={30} color="green" />
+            <Icon name="stepforward" size={30} color="green" />
           ) : (
-            <Icon name="camera" size={30} color="black" />
+            <Icon name="back" size={30} color="black" />
           )}
         </TouchableOpacity>
       )}
@@ -130,39 +128,39 @@ const Header = ({
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'pink',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  titleContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  left: {
-    left: 16,
-    zIndex: 1,
-    marginRight: -15,
-    justifyContent: 'center',
-  },
-  space: {
-    flex: 1,
-  },
-  right: {
-    right: 16,
-    zIndex: 1,
-    marginLeft: -15,
-    justifyContent: 'center',
-  },
-  title: {
-    //   fontFamily: fontFamily.raleway.semiBold,
-    fontSize: 18,
-    lineHeight: 22,
-    color: 'black',
-  },
-});
+const getStyles = (theme: MyTheme) =>
+  StyleSheet.create({
+    container: {
+      backgroundColor: theme.gray[800],
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    titleContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    left: {
+      left: 16,
+      zIndex: 1,
+      marginRight: -15,
+      justifyContent: 'center',
+    },
+    space: {
+      flex: 1,
+    },
+    right: {
+      right: 16,
+      zIndex: 1,
+      marginLeft: -15,
+      justifyContent: 'center',
+    },
+    title: {
+      fontSize: 18,
+      lineHeight: 22,
+      color: theme.gray[100],
+    },
+  });
 
 export default Header;

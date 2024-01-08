@@ -8,9 +8,7 @@ import {LoginApiResponseParams} from '../../store/Api/types';
 import {useDispatch} from 'react-redux';
 import {setUserInfo} from '../../store/slices/user';
 import {setRoute} from '../../store/slices/route';
-import {useNavigation} from '@react-navigation/native';
 import {useAppSelector} from '../../store';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
   const [login, setLogin] = useState({
@@ -33,7 +31,6 @@ const LoginScreen = () => {
   const apiResponse = useApiResponse({
     successHandler: (v: LoginApiResponseParams) => {
       const userInfo = {username: v.username, user: v};
-
       dispatch(setUserInfo(userInfo.user));
       dispatch(setRoute({path: 'RootNavigator'}));
     },

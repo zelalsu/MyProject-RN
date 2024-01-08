@@ -1,5 +1,5 @@
 import {TextStyle, ViewStyle} from 'react-native/types';
-import Animated from 'react-native-reanimated';
+// import Animated from 'react-native-reanimated';
 import {PropsWithChildren} from 'react';
 
 interface IconOptions {
@@ -55,7 +55,7 @@ export type RNModalParams = PropsWithChildren<{
   swipeOptions?: SwipeOptionsParams;
   backDropOptions?: BackDropOptionsParams;
   modalOptions: ModalOptionsParams;
-  animationOptions?: AnimationOptionsParams;
+  // animationOptions?: AnimationOptionsParams;
   gestureOptions?: GestureOptionsParams;
   keyboardOptions?: KeyboardOptionsParams;
 }>;
@@ -96,11 +96,11 @@ type ModalOptionsParams = {
   onShow?: () => void;
 };
 
-type AnimationOptionsParams = {
-  inTiming?: number;
-  outTiming?: number;
-  type?: Animated.EasingFunction;
-};
+// type AnimationOptionsParams = {
+//   inTiming?: number;
+//   outTiming?: number;
+//   type?: Animated.EasingFunction;
+// };
 
 type GestureOptionsParams = {
   /**

@@ -11,6 +11,14 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import LoginScreen from '../screen/LoginScreen/LoginScreen';
 import {TabNavigator} from './tabRoutes';
 import MainScreen from '../screen/MainScreen/MainScreen';
+import SplashScreen from '@src/screen/SplashScreen';
+import DrawerBar from '@src/components/Drawer';
+import {window} from '@src/constant/dimension';
+import ProductScreen from '@src/screen/ProductScreen/ProductScreen';
+import DenemeScreen from '@src/screen/DenemeScreen';
+import {useTheme} from '@react-navigation/native';
+import {MyTheme} from '../constant/types';
+import ProfileScreen from '@src/screen/ProfileScreen';
 
 const Root = createNativeStackNavigator<RootStackParams>();
 const Auth = createNativeStackNavigator<RootStackParams>();
@@ -23,8 +31,18 @@ export function RootNavigator() {
         headerShown: false,
         animation: 'slide_from_right',
       }}>
-      {/* <Root.Screen name="DrawerNavigator" component={DrawerNavigator} /> */}
+      <Root.Screen name="DrawerNavigator" component={DrawerNavigator} />
       <Root.Screen name="TabNavigator" component={TabNavigator} />
+      <Root.Screen
+        options={{animation: 'slide_from_bottom', presentation: 'modal'}}
+        name="ProductScreen"
+        component={ProductScreen}
+      />
+      <Root.Screen
+        options={{animation: 'slide_from_bottom', presentation: 'modal'}}
+        name="DenemeScreen"
+        component={DenemeScreen}
+      />
     </Root.Navigator>
   );
 }
@@ -36,32 +54,31 @@ export function AuthNavigator() {
         headerShown: false,
         animation: 'slide_from_right',
       }}>
-      {/* <Auth.Screen name="SplashScreen" component={SplashScreen} /> */}
+      <Auth.Screen name="SplashScreen" component={SplashScreen} />
       <Auth.Screen name="LoginScreen" component={LoginScreen} />
     </Auth.Navigator>
   );
 }
 
-// const DrawerNavigator = () => {
-//   return (
-//     <Drawer.Navigator
-//       screenOptions={{
-//         headerShown: false,
-//         drawerStyle: {
-//           //   width: window.width - 65,
-//           backgroundColor: 'transparent',
-//         },
-//         drawerType: 'front',
-//       }}
-//       //   drawerContent={(props) => SideBar(props)}
-//     >
-//       {/* <Drawer.Screen name="ProfilScreen" component={ProfilScreen} />
-//       <Drawer.Screen name="ApplicationScreen" component={ApplicationScreen} />
-//       <Drawer.Screen name="WishlistScreen" component={WishlistScreen} />
-//       <Drawer.Screen
-//         name="CommunicationScreen"
-//         component={CommunicationScreen}
-//       /> */}
-//     </Drawer.Navigator>
-//   );
-// };
+export const DrawerNavigator = () => {
+  const theme = useTheme() as MyTheme; // useTheme'in döndüğü tipi MyTheme olarak belirtin
+
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+        drawerStyle: {
+          width: window.width - 65,
+          backgroundColor: theme.gray[800],
+          borderBottomRightRadius: 30,
+        },
+        drawerType: 'front',
+      }}
+      drawerContent={props => DrawerBar(props)}>
+      <Drawer.Screen name="MainScreen" component={MainScreen} />
+      <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
+
+      {/* <Drawer.Screen name="ApplicationScreen" component={ApplicationScreen} /> */}
+    </Drawer.Navigator>
+  );
+};

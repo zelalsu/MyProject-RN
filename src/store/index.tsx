@@ -14,22 +14,29 @@ import {thunk} from 'redux-thunk';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {loginApi} from './api/login';
 import userReducer from './slices/user';
+import themeReducer from './slices/theme';
+
 import apiMiddleware from './api/apiMiddleware';
 import routeReducer from './slices/route';
+import {userListApi} from './api/userList';
+import {shopApi} from './api/shop';
 
 // Reducer
 // Api
 
 const rootReducer = combineReducers({
   [loginApi.reducerPath]: loginApi.reducer,
+  [userListApi.reducerPath]: userListApi.reducer,
+  [shopApi.reducerPath]: shopApi.reducer,
   user: userReducer,
+  theme: themeReducer,
   route: routeReducer,
   [apiMiddleware.reducerPath]: apiMiddleware.reducer,
 });
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user'],
+  whitelist: ['user', 'theme'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -46,7 +53,13 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         warnAfter: 1000,
       },
-    }).concat(thunk, loginApi.middleware, apiMiddleware.middleware),
+    }).concat(
+      thunk,
+      loginApi.middleware,
+      apiMiddleware.middleware,
+      userListApi.middleware,
+      shopApi.middleware,
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

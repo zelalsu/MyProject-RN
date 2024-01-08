@@ -13,3 +13,24 @@ export type LoginApiParams = {
   username: string;
   password: string;
 };
+
+export type ShopApiParams = {
+  userName_0: string;
+};
+
+export type ShopApiResponseParams = {
+  getUserInfo: {
+    magazaGuid: null;
+  };
+  getnowOnlyDate: {
+    getnowOnlyDate: string;
+  };
+  sbSubeList: [
+    {
+      aktiflik: boolean;
+      id: string;
+      siraNo: number;
+      subeAdi: string;
+    },
+  ];
+};

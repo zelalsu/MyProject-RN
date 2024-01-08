@@ -8,24 +8,29 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 export type RootStackParams = {
   SplashScreen: undefined;
   LoginScreen: undefined;
-
   DrawerNavigator: NavigatorScreenParams<DrawerStackParams>;
   TabNavigator: NavigatorScreenParams<TabStackParams>;
+  ProductScreen: undefined;
+  DenemeScreen: undefined;
+  ProfileScreen: undefined;
 };
 
 export type TabStackParams = {
   MainNavigator: NavigatorScreenParams<MainStackParams>;
   ProductScreen: undefined;
-  MainScreen: undefined;
+  BranchScreen: undefined;
 };
 
 export type MainStackParams = {
   ProductSubCategoryScreen?: {id: string; title: string};
   MainScreen: undefined;
+  DenemeScreen: undefined;
+  NewScreen: undefined;
 };
 
 export type DrawerStackParams = {
   MainScreen: undefined;
+  ProfileScreen: undefined;
 };
 
 // PROPS

@@ -12,6 +12,8 @@ import * as navigator from './routeRoutes';
 // Constant
 
 import {useAppSelector} from '../store';
+import {useColorScheme} from 'react-native';
+import {colorsLight, colorsDark} from '../constant/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,8 +37,24 @@ function RootNavigator() {
 }
 
 export default function Navigation() {
+  const themePreference = useAppSelector(state => state.theme.mode);
+
+  const scheme = useColorScheme();
+  const themeMode = themePreference === 'system' ? scheme : themePreference;
+
+  const myTheme =
+    themeMode === 'light'
+      ? {
+          ...DefaultTheme,
+          ...colorsLight,
+        }
+      : {
+          ...DarkTheme,
+          ...colorsDark,
+        };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={myTheme}>
       <RootNavigator />
     </NavigationContainer>
   );

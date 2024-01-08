@@ -2,8 +2,12 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import Header from '@src/components/UI/Header';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {DrawerStackScreenProps} from '@src/navigation/types';
 
-const ProductScreen = () => {
+const ProfileScreen = ({}: DrawerStackScreenProps<
+  'DrawerNavigator',
+  'ProfileScreen'
+>) => {
   return (
     <View>
       <Header
@@ -16,11 +20,11 @@ const ProductScreen = () => {
         insetTop={true}
         textOptions={{
           shown: true,
-          title: 'SAYFA 2',
+          title: 'Profil',
         }}
       />
     </View>
   );
 };
 
-export default ProductScreen;
+export default ProfileScreen;

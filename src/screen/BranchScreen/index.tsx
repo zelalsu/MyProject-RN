@@ -2,8 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import Header from '@src/components/UI/Header';
 import Icon from 'react-native-vector-icons/AntDesign';
-
-const ProductScreen = () => {
+const BranchScreen = ({navigation}) => {
   return (
     <View>
       <Header
@@ -16,11 +15,11 @@ const ProductScreen = () => {
         insetTop={true}
         textOptions={{
           shown: true,
-          title: 'SAYFA 2',
+          title: 'Sayfa 1',
         }}
       />
     </View>
   );
 };
 
-export default ProductScreen;
+export default BranchScreen;
