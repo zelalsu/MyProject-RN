@@ -14,11 +14,9 @@ export type LoginApiParams = {
   password: string;
 };
 
-export type ShopApiParams = {
-  userName_0: string;
-};
+export type ShopApiResponseParams = {};
 
-export type ShopApiResponseParams = {
+export type ShopApiParams = {
   getUserInfo: {
     magazaGuid: null;
   };

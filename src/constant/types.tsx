@@ -1,7 +1,6 @@
 export type MyTheme = {
   white: string;
   black: string;
-
   gray: {
     100: string;
     200: string;

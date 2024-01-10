@@ -23,7 +23,7 @@ export const colorsLight: MyTheme = {
   },
 };
 
-export const colorsDark: MyTheme = {
+export const colorsDarks: MyTheme = {
   white: '#121212',
   black: '#FFFF',
 

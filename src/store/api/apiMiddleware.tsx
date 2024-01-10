@@ -31,6 +31,7 @@ export const baseQueryWithReauth = async (
   extraOptions: {},
 ) => {
   let result = await baseQuery(args, api, extraOptions);
+
   if (result.error?.status) {
     console.log(result.error?.status);
     api.dispatch(setUserInitialState());

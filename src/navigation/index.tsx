@@ -5,6 +5,7 @@ import {
   NavigationContainer,
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useColorScheme} from 'react-native';
 
 // Route
 import * as navigator from './routeRoutes';
@@ -12,8 +13,7 @@ import * as navigator from './routeRoutes';
 // Constant
 
 import {useAppSelector} from '../store';
-import {useColorScheme} from 'react-native';
-import {colorsLight, colorsDark} from '../constant/colors';
+import {colorsDarks, colorsLight} from '../constant/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,7 +50,7 @@ export default function Navigation() {
         }
       : {
           ...DarkTheme,
-          ...colorsDark,
+          ...colorsDarks,
         };
 
   return (

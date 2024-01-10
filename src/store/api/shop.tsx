@@ -4,7 +4,7 @@ import {ShopApiParams, ShopApiResponseParams} from './types';
 
 export const shopApi = apiMiddleware.injectEndpoints({
   endpoints: builder => ({
-    shopApi: builder.mutation<ShopApiResponseParams, ShopApiParams>({
+    shopApi: builder.mutation<ShopApiParams, ShopApiResponseParams>({
       query: data => ({
         url: 'MagazaGunSonu/MagazaGunSonuPageInit',
         method: 'POST',

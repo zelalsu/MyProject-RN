@@ -1,47 +1,43 @@
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/UI/Header';
 import {Button} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
-import {setUserInitialState} from '@src/store/slices/user';
-import {setRoute} from '@src/store/slices/route';
-import {useLazyUserListQuery} from '@src/store/api/userList';
 import {useShopApiMutation} from '@src/store/api/shop';
 import {useAppSelector} from '@src/store';
-import {ShopApiResponseParams} from '@src/store/api/types';
+import {ShopApiParams, ShopApiResponseParams} from '@src/store/api/types';
 import {DrawerStackScreenProps} from '@src/navigation/types';
-import {DrawerActions} from '@react-navigation/native';
+import {DrawerActions, useTheme} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Logo from '@assets/svg/aruna-deppo.svg';
+import getStyles from './style';
 
 const MainScreen = ({
   navigation,
 }: DrawerStackScreenProps<'DrawerNavigator', 'MainScreen'>) => {
   const dispatch = useDispatch();
-  const [userListQuery] = useLazyUserListQuery();
+  // const [userListQuery] = useLazyUserListQuery();
 
-  const [newsData, setNewsData] = useState([]); // Changed to singular item
   const [shopList] = useShopApiMutation();
   const storedUserInfo = useAppSelector(state => state.user.user);
-  const [shopItem, setShopItem] = useState<ShopApiResponseParams>([]);
-
-  useEffect(() => {
-    userListQuery().then(res => {
-      if (res) {
-        setNewsData(res.data);
-      } else {
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [shopItem, setShopItem] = useState<ShopApiParams>();
+  const theme = useTheme();
+  const styles = React.useMemo(() => getStyles(theme), [theme]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        shopList({
+        const res = await shopList({
           userName_0: storedUserInfo.username,
-        }).then(res => {
-          setShopItem(res.data);
         });
+
+        if ('data' in res) {
+          // Success case
+          setShopItem(res.data);
+        } else {
+          // Error case
+          console.error('Error during API call:', res.error);
+        }
       } catch (error) {
         console.error('Error during API call:', error);
       }
@@ -67,24 +63,18 @@ const MainScreen = ({
           insetTop={true}
           textOptions={{
             shown: true,
-            title: 'Ana sayfa',
+            component: <Logo width={100} height={40} />,
           }}
         />
       </View>
       {shopItem &&
         shopItem.sbSubeList &&
         shopItem.sbSubeList.map((item, key) => (
-          <View key={key} style={{backgroundColor: 'pink'}}>
+          <View key={key} style={styles.shopContainer}>
             <Text>{item.subeAdi}</Text>
           </View>
         ))}
 
-      {newsData &&
-        newsData.map(item => (
-          <View>
-            <Text>{item.name}</Text>
-          </View>
-        ))}
       <Button
         onPress={() =>
           navigation.navigate('TabNavigator', {
