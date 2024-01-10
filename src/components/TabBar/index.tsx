@@ -21,8 +21,8 @@ const TabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
           .tabBarLabel as string;
 
         const tabBarIcon = () => {
-          if (route.name === 'ProductScreen') {
-            return <Icon name="staro" size={16} color="black" />;
+          if (route.name === 'BranchScreen') {
+            return <Icon name="filter" size={16} color="black" />;
           }
           if (route.name === 'MainNavigator') {
             return (
@@ -34,8 +34,8 @@ const TabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
                 style={styles.mainNavigatorIcon}></TouchableOpacity>
             );
           }
-          if (route.name === 'BranchScreen') {
-            return <Icon name="filter" size={16} color="black" />;
+          if (route.name === 'ProductScreen') {
+            return <Icon name="staro" size={16} color="black" />;
           }
         };
 

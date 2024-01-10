@@ -27,7 +27,7 @@ const MainScreen = ({
   useEffect(() => {
     userListQuery().then(res => {
       if (res) {
-        setNewsData(res);
+        setNewsData(res.data);
       } else {
       }
     });
@@ -51,6 +51,7 @@ const MainScreen = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
       <View>
@@ -75,6 +76,13 @@ const MainScreen = ({
         shopItem.sbSubeList.map((item, key) => (
           <View key={key} style={{backgroundColor: 'pink'}}>
             <Text>{item.subeAdi}</Text>
+          </View>
+        ))}
+
+      {newsData &&
+        newsData.map(item => (
+          <View>
+            <Text>{item.name}</Text>
           </View>
         ))}
       <Button

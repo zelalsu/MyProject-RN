@@ -12,15 +12,10 @@ const ProfileScreen = ({}: DrawerStackScreenProps<
     <View>
       <Header
         presentation="back"
-        leftOptions={{
-          shown: true,
-          icon: <Icon name="back" size={30} color="black" />,
-          iconClick: () => {},
-        }}
         insetTop={true}
         textOptions={{
           shown: true,
-          title: 'Profil',
+          title: 'Profill',
         }}
       />
     </View>

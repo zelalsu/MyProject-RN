@@ -33,11 +33,7 @@ export function RootNavigator() {
       }}>
       <Root.Screen name="DrawerNavigator" component={DrawerNavigator} />
       <Root.Screen name="TabNavigator" component={TabNavigator} />
-      <Root.Screen
-        options={{animation: 'slide_from_bottom', presentation: 'modal'}}
-        name="ProductScreen"
-        component={ProductScreen}
-      />
+
       <Root.Screen
         options={{animation: 'slide_from_bottom', presentation: 'modal'}}
         name="DenemeScreen"
@@ -61,7 +57,7 @@ export function AuthNavigator() {
 }
 
 export const DrawerNavigator = () => {
-  const theme = useTheme() as MyTheme; // useTheme'in döndüğü tipi MyTheme olarak belirtin
+  const theme = useTheme() as unknown as MyTheme; // useTheme'in döndüğü tipi MyTheme olarak belirtin
 
   return (
     <Drawer.Navigator

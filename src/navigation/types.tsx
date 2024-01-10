@@ -10,9 +10,7 @@ export type RootStackParams = {
   LoginScreen: undefined;
   DrawerNavigator: NavigatorScreenParams<DrawerStackParams>;
   TabNavigator: NavigatorScreenParams<TabStackParams>;
-  ProductScreen: undefined;
   DenemeScreen: undefined;
-  ProfileScreen: undefined;
 };
 
 export type TabStackParams = {
@@ -22,10 +20,10 @@ export type TabStackParams = {
 };
 
 export type MainStackParams = {
-  ProductSubCategoryScreen?: {id: string; title: string};
-  MainScreen: undefined;
   DenemeScreen: undefined;
   NewScreen: undefined;
+  ProductScreen: undefined;
+  BranchScreen: undefined;
 };
 
 export type DrawerStackParams = {

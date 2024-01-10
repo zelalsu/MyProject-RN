@@ -1,6 +1,6 @@
 import {tabBarHeight} from '@src/constant/dimension';
+import {MyTheme} from '@src/constant/types';
 import {StyleSheet} from 'react-native/';
-import {MyTheme} from '@src/constants/types';
 
 const getStyles = (theme: MyTheme) =>
   StyleSheet.create({

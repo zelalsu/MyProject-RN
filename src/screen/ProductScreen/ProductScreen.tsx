@@ -16,7 +16,7 @@ const ProductScreen = () => {
         insetTop={true}
         textOptions={{
           shown: true,
-          title: 'SAYFA 2',
+          title: ' Ürünler',
         }}
       />
     </View>
