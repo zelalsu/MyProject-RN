@@ -4,6 +4,7 @@ import {MyTheme} from '@src/constant/types';
 const getStyles = (theme: MyTheme) =>
   StyleSheet.create({
     container: {
+      flex: 1,
       backgroundColor: theme.gray[800],
       borderBottomRightRadius: 50,
       paddingHorizontal: 16,
@@ -43,7 +44,6 @@ const getStyles = (theme: MyTheme) =>
     rowContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-
       justifyContent: 'center',
     },
     verticalLine: {

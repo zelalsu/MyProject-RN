@@ -25,6 +25,12 @@ const style = StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 50,
   },
+  loadingOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Transparent black background
+  },
 });
 
 export default style;

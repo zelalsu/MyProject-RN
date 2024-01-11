@@ -1,16 +1,17 @@
 import {View, Text, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import Header from '../../components/UI/Header';
+
 import {Button} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {useShopApiMutation} from '@src/store/api/shop';
 import {useAppSelector} from '@src/store';
-import {ShopApiParams, ShopApiResponseParams} from '@src/store/api/types';
+import {ShopApiParams} from '@src/store/api/types';
 import {DrawerStackScreenProps} from '@src/navigation/types';
 import {DrawerActions, useTheme} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Logo from '@assets/svg/aruna-deppo.svg';
 import getStyles from './style';
+import Header from '@src/components/UI/Header';
 
 const MainScreen = ({
   navigation,
@@ -49,13 +50,13 @@ const MainScreen = ({
   }, []);
 
   return (
-    <>
+    <View style={styles.container}>
       <View>
         <Header
           presentation="back"
           leftOptions={{
             shown: true,
-            icon: <Icon name="bars" size={30} color="black" />,
+            icon: <Icon name="bars" size={30} color="#5f5f5f" />,
             iconClick: () => {
               navigation.dispatch(DrawerActions.toggleDrawer());
             },
@@ -97,7 +98,7 @@ const MainScreen = ({
         }>
         NewsScreen
       </Button>
-    </>
+    </View>
   );
 };
 

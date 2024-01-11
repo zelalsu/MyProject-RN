@@ -96,7 +96,7 @@ const Header = ({
           ) : presentation === 'close' ? (
             <Icon name="stepforward" size={30} color="green" />
           ) : (
-            <Icon name="back" size={30} color="black" />
+            <Icon name="back" size={30} color="#5f5f5f" />
           )}
         </TouchableOpacity>
       )}

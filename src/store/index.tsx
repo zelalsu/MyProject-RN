@@ -15,6 +15,7 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {loginApi} from './api/login';
 import userReducer from './slices/user';
 import themeReducer from './slices/theme';
+import languageReducer from './slices/language';
 
 import apiMiddleware from './api/apiMiddleware';
 import routeReducer from './slices/route';
@@ -30,13 +31,14 @@ const rootReducer = combineReducers({
   [shopApi.reducerPath]: shopApi.reducer,
   user: userReducer,
   theme: themeReducer,
+  language: languageReducer,
   route: routeReducer,
   [apiMiddleware.reducerPath]: apiMiddleware.reducer,
 });
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user', 'theme'],
+  whitelist: ['user', 'theme', 'language'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

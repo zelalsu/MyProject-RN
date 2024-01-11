@@ -15,7 +15,7 @@ const ProfileScreen = ({}: DrawerStackScreenProps<
         insetTop={true}
         textOptions={{
           shown: true,
-          title: 'Profill',
+          title: 'Profil',
         }}
       />
     </View>

@@ -65,8 +65,7 @@ export const DrawerNavigator = () => {
         headerShown: false,
         drawerStyle: {
           width: window.width - 65,
-          backgroundColor: theme.gray[800],
-          borderBottomRightRadius: 30,
+          backgroundColor: 'transparent',
         },
         drawerType: 'front',
       }}
