@@ -6,23 +6,21 @@ const getStyles = (theme: MyTheme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.gray[800],
+      backgroundColor: theme.gray[900],
     },
-    descContainer: {
-      flex: 1,
+    userInfoContainer: {
+      marginVertical: 40,
+
+      marginHorizontal: 20,
+      justifyContent: 'center',
     },
-    descMain: {
-      width: window.width,
-      alignItems: 'center',
-      borderColor: 'white',
-      borderBottomLeftRadius: 30,
-      borderBottomRightRadius: 30,
+    userInfo: {
+      backgroundColor: theme.gray[700],
+      borderRadius: 16,
+      padding: 10,
+      paddingVertical: 20,
     },
 
-    inputContainer: {
-      backgroundColor: theme.white,
-      borderRadius: 30,
-    },
     inputText: {
       height: window.height / 4 - 30,
       justifyContent: 'space-between',
@@ -30,12 +28,12 @@ const getStyles = (theme: MyTheme) =>
       marginVertical: 30,
     },
     title: {
-      backgroundColor: theme.gray[800],
+      backgroundColor: theme.gray[900],
+      marginVertical: 10,
     },
     label: {
       color: theme.gray[200],
     },
-
     loadingOverlay: {
       flex: 1,
       justifyContent: 'center',

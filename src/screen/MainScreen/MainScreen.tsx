@@ -8,15 +8,14 @@ import {useAppSelector} from '@src/store';
 import {ShopApiParams} from '@src/store/api/types';
 import {DrawerStackScreenProps} from '@src/navigation/types';
 import {DrawerActions, useTheme} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import Logo from '@assets/svg/aruna-deppo.svg';
 import getStyles from './style';
 import Header from '@src/components/UI/Header';
+import ListDrawer from '@assets/svg/ListDrawer.svg';
 
 const MainScreen = ({
   navigation,
 }: DrawerStackScreenProps<'DrawerNavigator', 'MainScreen'>) => {
-  const dispatch = useDispatch();
   // const [userListQuery] = useLazyUserListQuery();
 
   const [shopList] = useShopApiMutation();
@@ -56,7 +55,7 @@ const MainScreen = ({
           presentation="back"
           leftOptions={{
             shown: true,
-            icon: <Icon name="bars" size={30} color="#5f5f5f" />,
+            icon: <ListDrawer />,
             iconClick: () => {
               navigation.dispatch(DrawerActions.toggleDrawer());
             },

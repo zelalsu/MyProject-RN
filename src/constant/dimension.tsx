@@ -9,7 +9,7 @@ export const window = {
 };
 
 export const tabBarHeight = 82;
-export const headerHeight = 50;
+export const headerHeight = 70;
 
 const base = 'http://demo.arunayazilim.com:8081/v1/';
 export const baseUrl = base + 'api/';

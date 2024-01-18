@@ -30,17 +30,7 @@ const getStyles = (theme: MyTheme) =>
       fontSize: 10,
       color: theme.gray[500],
     },
-    toolKitContainer: {
-      backgroundColor: theme.gray[900],
-      borderBottomRightRadius: 12,
-      borderTopRightRadius: 12,
-      borderTopLeftRadius: 40,
-      borderBottomLeftRadius: 40,
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginVertical: 28,
-      padding: 6,
-    },
+
     rowContainer: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -52,38 +42,7 @@ const getStyles = (theme: MyTheme) =>
       backgroundColor: 'gray',
       marginHorizontal: 14,
     },
-    toolKitTitle: {
-      color: theme.gray[100],
-      fontSize: 12,
-    },
-    toolKitContainer1: {
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    toolKitWrapper: {
-      position: 'absolute',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    quantity: {
-      marginTop: 3,
-      fontSize: 12,
-      color: theme.gray[500],
-    },
-    price: {
-      fontSize: 12,
-      color: theme.primary.main,
-    },
-    followIconContainer: {
-      marginTop: 30,
-      marginHorizontal: 20,
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 20,
-    },
-    icon: {
-      marginRight: 24,
-    },
+
     logOut: {
       fontSize: 14,
       color: theme.primary.main,

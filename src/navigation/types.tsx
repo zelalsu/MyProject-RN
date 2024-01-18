@@ -11,6 +11,7 @@ export type RootStackParams = {
   DrawerNavigator: NavigatorScreenParams<DrawerStackParams>;
   TabNavigator: NavigatorScreenParams<TabStackParams>;
   DenemeScreen: undefined;
+  Deneme2Screen: undefined;
 };
 
 export type TabStackParams = {

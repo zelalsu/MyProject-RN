@@ -2,11 +2,12 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/AntDesign';
 
 // Constant
 
 // Type
+import Close from '@assets/svg/Close.svg';
+import Back from '@assets/svg/Back.svg';
 
 import {HeaderProps} from './types';
 
@@ -54,7 +55,7 @@ const Header = ({
     stroke:
       leftOptions && leftOptions.strokeOptions?.color
         ? leftOptions.strokeOptions.color
-        : 'black',
+        : theme.black,
     strokeWidth:
       leftOptions && leftOptions.strokeOptions?.width
         ? leftOptions.strokeOptions.width
@@ -62,7 +63,7 @@ const Header = ({
     fill:
       leftOptions && leftOptions.fillOptions?.color
         ? leftOptions.fillOptions.color
-        : 'black',
+        : theme.black,
   };
 
   const leftShown =
@@ -94,9 +95,9 @@ const Header = ({
           {leftOptions?.icon ? (
             leftOptions.icon
           ) : presentation === 'close' ? (
-            <Icon name="stepforward" size={30} color="green" />
+            <Close width={25} height={25} {...iconOptions} />
           ) : (
-            <Icon name="back" size={30} color="#5f5f5f" />
+            <Back {...iconOptions} />
           )}
         </TouchableOpacity>
       )}
@@ -135,6 +136,8 @@ const getStyles = (theme: MyTheme) =>
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 20,
     },
     titleContainer: {
       flex: 1,

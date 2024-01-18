@@ -33,7 +33,6 @@ export const baseQueryWithReauth = async (
   let result = await baseQuery(args, api, extraOptions);
 
   if (result.error?.status) {
-    console.log(result.error?.status);
     api.dispatch(setUserInitialState());
     api.dispatch(setRoute({path: 'AuthNavigator'}));
   }

@@ -5,10 +5,12 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Button, TextInput} from 'react-native-paper';
-import style from './style';
+import {TextInput} from 'react-native-paper';
+
 import {useLazyLoginQuery} from '../../store/api/login';
 import useApiResponse from '../../hooks/useApiResponse';
 import {LoginApiResponseParams} from '../../store/Api/types';
@@ -16,13 +18,25 @@ import {useDispatch} from 'react-redux';
 import {setUserInfo} from '../../store/slices/user';
 import {setRoute} from '../../store/slices/route';
 import {useAppSelector} from '../../store';
+import getStyles from './style';
 
+import {useTheme} from '@react-navigation/native';
+import Logo from '@assets/svg/aruna-deppo.svg';
+import CustomButton from '@src/components/UI/CustomBottom';
+import Icon from 'react-native-vector-icons/Fontisto';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 const LoginScreen = () => {
   const [login, setLogin] = useState({
     username: 'utku.utkan@arunayazilim.com',
     password: 'Arn2014.,',
   });
   const storedUserInfo = useAppSelector(state => state.user.user);
+  const [loginApiTrigger] = useLazyLoginQuery();
+  const [loading, setLoading] = useState(false); // Add loading state
+  const dispatch = useDispatch();
+  const theme = useTheme();
+
+  const style = React.useMemo(() => getStyles(theme), [theme]);
 
   useEffect(() => {
     // Önceki oturum bilgilerini kontrol et
@@ -31,10 +45,6 @@ const LoginScreen = () => {
       dispatch(setRoute({path: 'RootNavigator'}));
     }
   }, []);
-  const [loginApiTrigger] = useLazyLoginQuery();
-  const [loading, setLoading] = useState(false); // Add loading state
-
-  const dispatch = useDispatch();
 
   const apiResponse = useApiResponse({
     successHandler: (v: LoginApiResponseParams) => {
@@ -66,53 +76,82 @@ const LoginScreen = () => {
       Alert.alert('Lütfen boş bırakmayınız');
     }
   };
+
+  const insets = useSafeAreaInsets();
+  const [rememberMe, setRememberMe] = useState(false);
   return (
-    <View style={style.container}>
-      <Text style={style.title}>Hoşgeldiniz</Text>
-      <View style={style.inputContainer}>
-        <View style={style.inputText}>
-          <TextInput
-            style={{marginBottom: 5}}
-            label="Email"
-            value={login.username}
-            mode="outlined"
-            onChangeText={value => {
-              setLogin({...login, username: value});
-            }}
-          />
-          <TextInput
-            label="Password"
-            value={login.password}
-            mode="outlined"
-            right={
-              <TouchableOpacity
-                onPress={() => setLogin({...login, password: ''})}>
-                <Text style={{color: 'red'}}>sdlkf</Text>
-              </TouchableOpacity>
-            }
-            onChangeText={value => {
-              setLogin({...login, password: value});
-            }}
-          />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={style.container}>
+        <View style={[{marginTop: insets.top}]}>
+          <View style={style.descMain}>
+            <Logo width={150} height={100} />
+          </View>
+        </View>
+
+        <View style={{flex: 1, justifyContent: 'center', marginHorizontal: 16}}>
+          <View style={style.inputContainer}>
+            <View style={style.inputText}>
+              <TextInput
+                label="E-Posta"
+                value={login.username}
+                mode="flat"
+                contentStyle={style.label}
+                style={style.title}
+                onChangeText={value => {
+                  setLogin({...login, username: value});
+                }}
+              />
+              <TextInput
+                label="Şifre"
+                value={login.password}
+                contentStyle={style.label}
+                mode="flat"
+                style={style.title}
+                onChangeText={value => {
+                  setLogin({...login, password: value});
+                }}
+              />
+
+              <Modal
+                transparent={true}
+                animationType="fade"
+                visible={loading}
+                onRequestClose={() => setLoading(false)}>
+                <View style={style.loadingOverlay}>
+                  <ActivityIndicator size="large" color="white" />
+                </View>
+              </Modal>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <TouchableOpacity
+                  style={{flexDirection: 'row', alignItems: 'center', gap: 7}}
+                  activeOpacity={0.8}
+                  onPress={() => setRememberMe(!rememberMe)}>
+                  {rememberMe ? (
+                    <Icon
+                      name="checkbox-active"
+                      size={18}
+                      color={theme.gray[100]}
+                    />
+                  ) : (
+                    <Icon name="checkbox-passive" size={18} color="gray" />
+                  )}
+
+                  <Text style={style.label}>Beni Hatırla</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={style.label}>Şifremi Unuttum</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
 
           {apiResponse.modalView()}
-          <View style={{marginVertical: 20}}>
-            <Button mode="contained" onPress={loginHandler}>
-              Giriş yap
-            </Button>
-          </View>
-          <Modal
-            transparent={true}
-            animationType="fade"
-            visible={loading}
-            onRequestClose={() => setLoading(false)}>
-            <View style={style.loadingOverlay}>
-              <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-          </Modal>
+
+          <CustomButton label="Giriş Yap" onPress={loginHandler} />
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

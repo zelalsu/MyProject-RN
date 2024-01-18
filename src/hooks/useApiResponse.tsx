@@ -76,7 +76,7 @@ const useApiResponse = ({successHandler, errorHandler}: UseApiParams) => {
   return {modalView, apiResponseHandler};
 };
 const styles = StyleSheet.create({
-  modalContainer: {marginTop: 5},
+  modalContainer: {},
   successText: {
     padding: 10,
     borderRadius: 5,

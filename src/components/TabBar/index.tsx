@@ -5,7 +5,6 @@ import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 //style
 import {useTheme} from '@react-navigation/native';
 import getStyles from './style';
-import Icon from 'react-native-vector-icons/AntDesign';
 
 //icon
 
@@ -22,7 +21,7 @@ const TabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
 
         const tabBarIcon = () => {
           if (route.name === 'BranchScreen') {
-            return <Icon name="filter" size={16} color="black" />;
+            return <Text>İcon</Text>;
           }
           if (route.name === 'MainNavigator') {
             return (
@@ -35,7 +34,7 @@ const TabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
             );
           }
           if (route.name === 'ProductScreen') {
-            return <Icon name="staro" size={16} color="black" />;
+            return <Text>İcon</Text>;
           }
         };
 

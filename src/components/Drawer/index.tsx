@@ -13,12 +13,12 @@ import {Switch} from 'react-native-switch';
 import {useAppSelector} from '@src/store';
 import getStyles from './style';
 import {DrawerActions, useTheme, useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import {useTranslation} from 'react-i18next';
 import {LangugeSliceParams} from '@src/store/types';
 import i18n from '@src/utils/i18n';
 import {setLanguage} from '@src/store/slices/language';
 import {window} from '@src/constant/dimension';
+import Close from '@assets/svg/Close.svg';
 
 let languages = [
   {
@@ -67,8 +67,9 @@ const DrawerBar = (props: DrawerContentComponentProps) => {
       <View style={{}}>
         <TouchableOpacity
           activeOpacity={0.9}
+          style={{marginTop: 10}}
           onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}>
-          <Icon name="close" size={24} color="black" />
+          <Close stroke={theme.black} fill={theme.black} />
         </TouchableOpacity>
 
         <View>
@@ -94,7 +95,7 @@ const DrawerBar = (props: DrawerContentComponentProps) => {
                   <Text style={styles.userMail}>{userInfo.username}</Text>
                 </View>
               </View>
-              <Icon name="right" size={16} color="black" />
+              <Text>right icon</Text>
             </View>
           </TouchableOpacity>
           <View
