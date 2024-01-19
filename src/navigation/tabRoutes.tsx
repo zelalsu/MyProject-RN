@@ -15,10 +15,11 @@ import {MainStackParams, TabStackParams} from './types';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProductScreen from '../screen/ProductScreen/ProductScreen';
 
-import BranchScreen from '@src/screen/BranchScreen';
-import NewsScreen from '@src/screen/NewsScreen';
+import NewsScreen from '@src/screen/ContactScreen';
 import TabBar from '@src/components/TabBar';
-import DenemeScreen from '@src/screen/DenemeScreen';
+import CustomerScreen from '@src/screen/MainCategories/CustomerScreen';
+import ReportScreen from '@src/screen/MainCategories/ReportScreen';
+import OrderScreen from '@src/screen/MainCategories/OrderScreen';
 
 const Tab = createBottomTabNavigator<TabStackParams>();
 const Stack = createNativeStackNavigator<MainStackParams>();
@@ -40,14 +41,14 @@ export const TabNavigator = () => {
       // initialRouteName="MainNavigator" // Bu satırı ekledik
     >
       <Tab.Screen
-        options={{tabBarLabel: 'BranchScreen'}}
-        name="BranchScreen"
-        component={BranchScreen}
+        options={{tabBarLabel: 'Müşterilerim'}}
+        name="CustomerScreen"
+        component={CustomerScreen}
       />
       <Tab.Screen name="MainNavigator" component={MainNavigator} />
 
       <Tab.Screen
-        options={{tabBarLabel: 'ProductScreen'}}
+        options={{tabBarLabel: 'Ürünlerim'}}
         name="ProductScreen"
         component={ProductScreen}
       />
@@ -62,13 +63,13 @@ const MainNavigator = () => {
         headerShown: false,
         animation: 'slide_from_bottom',
       }}>
-      <Stack.Screen name="NewScreen" component={NewsScreen} />
-      <Stack.Screen name="DenemeScreen" component={DenemeScreen} />
-      {/* <Stack.Screen
+      <Stack.Screen name="OrderScreen" component={OrderScreen} />
+
+      <Stack.Screen
         options={{animation: 'slide_from_bottom', presentation: 'modal'}}
-        name="BranchScreen"
-        component={BranchScreen}
-      /> */}
+        name="ReportScreen"
+        component={ReportScreen}
+      />
     </Stack.Navigator>
   );
 };

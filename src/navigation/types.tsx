@@ -17,19 +17,19 @@ export type RootStackParams = {
 export type TabStackParams = {
   MainNavigator: NavigatorScreenParams<MainStackParams>;
   ProductScreen: undefined;
-  BranchScreen: undefined;
+  CustomerScreen: undefined;
 };
 
 export type MainStackParams = {
-  DenemeScreen: undefined;
+  OrderScreen: undefined;
   NewScreen: undefined;
-  ProductScreen: undefined;
-  BranchScreen: undefined;
+  ReportScreen: undefined;
 };
 
 export type DrawerStackParams = {
   MainScreen: undefined;
   ProfileScreen: undefined;
+  ContactScreen: undefined;
 };
 
 // PROPS

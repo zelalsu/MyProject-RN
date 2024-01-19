@@ -24,6 +24,9 @@ const SplashScreen = () => {
   useEffect(() => {
     if (storedUserInfo.tokenString === '') {
       dispatch(setUserInitialState());
+      setTimeout(() => {
+        navigation.navigate('LoginScreen');
+      }, 3000);
     } else {
       setTimeout(() => {
         dispatch(setRoute({path: 'RootNavigator'}));
@@ -36,31 +39,11 @@ const SplashScreen = () => {
   return (
     <View style={style.container}>
       <View style={style.mainContainer}>
-        <View style={[style.descContainer, {marginTop: insets.top}]}>
-          <View style={style.descMain}>
-            <Logo width={150} height={100} />
-          </View>
-        </View>
-        <View>
+        <View style={[style.descContainer]}>
           <Image
-            style={{
-              width: 300,
-              height: 400,
-              borderRadius: 30,
-            }}
-            resizeMode="stretch"
-            source={splash}
+            style={style.arunaMobileSalesLogo}
+            source={require('@assets/image/aruna-brand.png')}
           />
-        </View>
-
-        <View style={style.descContainer}>
-          {storedUserInfo && storedUserInfo.tokenString === '' && (
-            <CustomButton
-              label="Devam Et"
-              onPress={() => navigation.navigate('LoginScreen')}
-              activeOpacity={0.8}
-            />
-          )}
         </View>
       </View>
     </View>

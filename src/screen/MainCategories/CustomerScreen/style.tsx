@@ -12,11 +12,13 @@ const getStyles = (theme: MyTheme) =>
     },
     categoryContainer: {
       flexWrap: 'wrap',
+
       flexDirection: 'row',
       justifyContent: 'space-between',
       marginHorizontal: 16,
     },
     imageContainer: {
+      borderBottomWidth: 8,
       borderBottomColor: theme.white,
       backgroundColor: theme.gray[800],
       borderRadius: 20,
@@ -28,7 +30,7 @@ const getStyles = (theme: MyTheme) =>
       },
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
-      elevation: 5,
+      elevation: 2,
     },
     catalogContainer: {
       height: 100,

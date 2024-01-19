@@ -5,6 +5,8 @@ import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 //style
 import {useTheme} from '@react-navigation/native';
 import getStyles from './style';
+import Customer from '@assets/svg/customer.svg';
+import Product from '@assets/svg/product.svg';
 
 //icon
 
@@ -20,8 +22,8 @@ const TabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
           .tabBarLabel as string;
 
         const tabBarIcon = () => {
-          if (route.name === 'BranchScreen') {
-            return <Text>İcon</Text>;
+          if (route.name === 'CustomerScreen') {
+            return <Customer width={30} height={30} />;
           }
           if (route.name === 'MainNavigator') {
             return (
@@ -34,7 +36,7 @@ const TabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
             );
           }
           if (route.name === 'ProductScreen') {
-            return <Text>İcon</Text>;
+            return <Product width={30} height={30} />;
           }
         };
 

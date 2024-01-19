@@ -19,6 +19,7 @@ import DenemeScreen from '@src/screen/DenemeScreen';
 import {useTheme} from '@react-navigation/native';
 import {MyTheme} from '../constant/types';
 import ProfileScreen from '@src/screen/ProfileScreen';
+import ContactScreen from '@src/screen/ContactScreen';
 
 const Root = createNativeStackNavigator<RootStackParams>();
 const Auth = createNativeStackNavigator<RootStackParams>();
@@ -73,7 +74,7 @@ export const DrawerNavigator = () => {
       <Drawer.Screen name="MainScreen" component={MainScreen} />
       <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
 
-      {/* <Drawer.Screen name="ApplicationScreen" component={ApplicationScreen} /> */}
+      <Drawer.Screen name="ContactScreen" component={ContactScreen} />
     </Drawer.Navigator>
   );
 };

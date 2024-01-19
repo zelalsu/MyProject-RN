@@ -1,20 +1,12 @@
-import {
-  View,
-  Text,
-  TouchableNativeFeedbackBase,
-  Keyboard,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {View, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '@src/components/UI/Header';
 import {DrawerStackScreenProps} from '@src/navigation/types';
 import {useAppSelector} from '@src/store';
 import getStyles from './style';
 import {useIsFocused, useTheme} from '@react-navigation/native';
-// import {TextInput} from 'react-native-gesture-handler';
 import {TextInput} from 'react-native-paper';
 import CustomButton from '@src/components/UI/CustomBottom';
-import {setDefaultNamespace} from 'node_modules/i18next';
 
 const ProfileScreen = ({}: DrawerStackScreenProps<
   'DrawerNavigator',

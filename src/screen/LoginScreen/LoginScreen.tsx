@@ -7,6 +7,7 @@ import {
   Modal,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TextInput} from 'react-native-paper';
@@ -84,7 +85,10 @@ const LoginScreen = () => {
       <View style={style.container}>
         <View style={[{marginTop: insets.top}]}>
           <View style={style.descMain}>
-            <Logo width={150} height={100} />
+            <Image
+              style={style.arunaMobileSalesLogo}
+              source={require('@assets/image/aruna-brand.png')}
+            />
           </View>
         </View>
 

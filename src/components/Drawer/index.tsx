@@ -19,7 +19,8 @@ import i18n from '@src/utils/i18n';
 import {setLanguage} from '@src/store/slices/language';
 import {window} from '@src/constant/dimension';
 import Close from '@assets/svg/Close.svg';
-
+import RightRed from '@assets/svg/RightRed.svg';
+import {DrawerStackParams} from '@src/navigation/types';
 let languages = [
   {
     id: '1',
@@ -62,6 +63,20 @@ const DrawerBar = (props: DrawerContentComponentProps) => {
       desc: t('CONTACT_DESC'),
     },
   ];
+  const goScreen = (id: number) => {
+    const navigationMap: {
+      [key: number]: keyof DrawerStackParams | undefined;
+    } = {
+      1: 'ContactScreen',
+    };
+    const screen = navigationMap[id];
+
+    if (screen) {
+      navigation.navigate('DrawerNavigator', {
+        screen: screen,
+      });
+    }
+  };
   return (
     <DrawerContentScrollView {...props} style={styles.container}>
       <View style={{}}>
@@ -95,7 +110,7 @@ const DrawerBar = (props: DrawerContentComponentProps) => {
                   <Text style={styles.userMail}>{userInfo.username}</Text>
                 </View>
               </View>
-              <Text>right icon</Text>
+              <RightRed />
             </View>
           </TouchableOpacity>
           <View
@@ -133,6 +148,7 @@ const DrawerBar = (props: DrawerContentComponentProps) => {
               {a.map((item, index) => (
                 <TouchableOpacity
                   activeOpacity={0.9}
+                  onPress={() => goScreen(item.id)}
                   key={index}
                   style={styles.profileContainer}>
                   <View style={styles.rowContainer}>

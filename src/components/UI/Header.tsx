@@ -136,6 +136,7 @@ const getStyles = (theme: MyTheme) =>
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+      paddingBottom: 10,
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 20,
     },

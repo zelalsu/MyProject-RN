@@ -18,6 +18,11 @@ const getStyles = (theme: MyTheme) =>
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30,
     },
+    arunaMobileSalesLogo: {
+      width: 200,
+      height: 100,
+      resizeMode: 'contain',
+    },
 
     inputContainer: {
       backgroundColor: theme.white,

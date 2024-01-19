@@ -1,10 +1,14 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import Header from '@src/components/UI/Header';
+import getStyles from './style';
+import {useTheme} from '@react-navigation/native';
 
-const NewsScreen = () => {
+const CustomerScreen = () => {
+  const theme = useTheme();
+  const styles = React.useMemo(() => getStyles(theme), [theme]);
   return (
-    <View>
+    <View style={styles.container}>
       <Header
         presentation="back"
         // leftOptions={{
@@ -14,11 +18,11 @@ const NewsScreen = () => {
         insetTop={true}
         textOptions={{
           shown: true,
-          title: 'NewsScreen',
+          title: 'Müşterilerim',
         }}
       />
     </View>
   );
 };
 
-export default NewsScreen;
+export default CustomerScreen;

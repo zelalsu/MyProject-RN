@@ -15,38 +15,21 @@ const getStyles = (theme: MyTheme) =>
     },
     descContainer: {
       flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     descMain: {
       width: window.width,
-      alignItems: 'center',
-      justifyContent: 'center',
+
       borderColor: 'white',
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30,
     },
-    buttonContainer: {
-      backgroundColor: theme.primary.main,
-      width: window.width - 34,
-      alignItems: 'center',
-      borderRadius: 8,
-      paddingVertical: 16,
-      marginTop: 40,
-    },
-    button: {
-      color: 'white',
-
-      fontSize: 14,
-      letterSpacing: 0.4,
-    },
-    desc1: {
-      fontSize: 20,
-      letterSpacing: 0.4,
-    },
-    desc2: {
-      color: 'gray',
-      fontSize: 20,
-
-      letterSpacing: 0.4,
+    arunaMobileSalesLogo: {
+      width: 250,
+      height: 100,
+      resizeMode: 'contain',
+      marginBottom: 20,
     },
   });
 
