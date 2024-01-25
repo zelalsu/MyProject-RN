@@ -1,22 +1,22 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
-
 import {useShopApiMutation} from '@src/store/api/shop';
 import {useAppSelector} from '@src/store';
 import {ShopApiParams} from '@src/store/api/types';
 import {DrawerStackScreenProps} from '@src/navigation/types';
 import {DrawerActions, useTheme} from '@react-navigation/native';
-import Logo from '@assets/svg/aruna-deppo.svg';
-import Header from '@src/components/UI/Header';
-import ListDrawer from '@assets/svg/ListDrawer.svg';
+import Drawer from '@assets/svg/Drawer.svg';
 import Customer from '@assets/svg/customer.svg';
 import Product1 from '@assets/svg/Product2.svg';
 import Shopping from '@assets/svg/shopping.svg';
 import Chart from '@assets/svg/Chart.svg';
+import Form from '@assets/svg/Form.svg';
 import {MainStackParams} from '@src/navigation/types';
 import getStyles from './style';
 import {window} from '@src/constant/dimension';
 import {HorizontalDash} from '@src/components/UI/Dash';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import Calender3 from '@assets/svg/Calender3.svg';
 const MainScreen = ({
   navigation,
 }: DrawerStackScreenProps<'DrawerNavigator', 'MainScreen'>) => {
@@ -29,26 +29,23 @@ const MainScreen = ({
   const styles = React.useMemo(() => getStyles(theme), [theme]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await shopList({
-          userName_0: storedUserInfo.username,
-        });
-
-        if ('data' in res) {
-          // Success case
-          setShopItem(res.data);
-        } else {
-          // Error case
-          console.error('Error during API call:', res.error);
-        }
-      } catch (error) {
-        console.error('Error during API call:', error);
-      }
-    };
-
-    fetchData();
-
+    // const fetchData = async () => {
+    //   try {
+    //     const res = await shopList({
+    //       userName_0: storedUserInfo.username,
+    //     });
+    //     if ('data' in res) {
+    //       // Success case
+    //       setShopItem(res.data);
+    //     } else {
+    //       // Error case
+    //       console.error('Error during API call:', res.error);
+    //     }
+    //   } catch (error) {
+    //     console.error('Error during API call:', error);
+    //   }
+    // };
+    // fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -73,9 +70,21 @@ const MainScreen = ({
     },
     {
       id: 4,
-      title: 'SİPARİŞLER',
+      title: 'FORMLAR',
+      divine: 2,
+      image: Form,
+    },
+    {
+      id: 4,
+      title: 'RAPORLAR',
       divine: 2,
       image: Shopping,
+    },
+    {
+      id: 5,
+      title: 'ZİYARET PLANIM',
+      divine: 2,
+      image: Calender3,
     },
   ];
 
@@ -86,7 +95,6 @@ const MainScreen = ({
     };
 
     const screen = navigationMap[id];
-    console.log(screen);
 
     id === 1 &&
       navigation.navigate('TabNavigator', {
@@ -108,23 +116,29 @@ const MainScreen = ({
   const widthHandler = (divine: number | undefined) => {
     return divine ? (window.width - 50) / divine : window.width;
   };
+  const insets = useSafeAreaInsets();
+
   return (
     <View style={styles.container}>
-      <Header
-        presentation="back"
-        leftOptions={{
-          shown: true,
-          icon: <ListDrawer />,
-          iconClick: () => {
-            navigation.dispatch(DrawerActions.toggleDrawer());
-          },
-        }}
-        insetTop={true}
-        textOptions={{
-          shown: true,
-          component: <Logo width={100} height={40} />,
-        }}
-      />
+      <View style={[{marginTop: insets.top, flexDirection: 'row'}]}>
+        <TouchableOpacity
+          style={{position: 'absolute', zIndex: 1, marginTop: 8}}
+          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
+          <Drawer stroke={theme.black} />
+        </TouchableOpacity>
+        <View
+          style={{
+            flex: 1,
+
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Image
+            style={styles.arunaMobileSalesLogo}
+            source={require('@assets/image/aruna-brand.png')}
+          />
+        </View>
+      </View>
 
       {/* {shopItem &&
         shopItem.sbSubeList &&
@@ -171,19 +185,13 @@ const MainScreen = ({
                   },
                 ]}>
                 <View style={styles.catalogContainer}>
+                  <item.image />
                   <View
                     style={{
-                      flexDirection:
-                        item.divine === 1.5 || item.divine === 2
-                          ? 'row'
-                          : 'column',
-                      alignItems: 'baseline',
+                      alignItems: 'center',
                     }}>
-                    <item.image style={{marginRight: 10}} />
-                    <View>
-                      <HorizontalDash />
-                      <Text style={styles.categoryTitle}>{item.title}</Text>
-                    </View>
+                    <HorizontalDash />
+                    <Text style={styles.categoryTitle}>{item.title}</Text>
                   </View>
                 </View>
               </View>

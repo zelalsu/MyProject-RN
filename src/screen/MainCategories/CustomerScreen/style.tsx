@@ -12,7 +12,6 @@ const getStyles = (theme: MyTheme) =>
     },
     categoryContainer: {
       flexWrap: 'wrap',
-
       flexDirection: 'row',
       justifyContent: 'space-between',
       marginHorizontal: 16,
@@ -45,6 +44,26 @@ const getStyles = (theme: MyTheme) =>
     countTitle: {
       color: theme.gray[500],
       fontSize: 10,
+    },
+    textInputContainer: {
+      flexDirection: 'row',
+      gap: 10,
+      alignItems: 'center',
+      marginHorizontal: 16,
+      height: 44,
+    },
+    textInput: {
+      color: theme.gray[100],
+      marginLeft: 7,
+    },
+    altTextInput: {
+      flexGrow: 1,
+      borderWidth: 1,
+      borderRadius: 10,
+      backgroundColor: theme.gray[900],
+      borderColor: theme.gray[700],
+      flexDirection: 'row',
+      alignItems: 'center',
     },
   });
 

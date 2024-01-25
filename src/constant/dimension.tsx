@@ -8,8 +8,8 @@ export const window = {
   height,
 };
 
-export const tabBarHeight = 82;
+export const tabBarHeight = 70;
 export const headerHeight = 60;
 
-const base = 'http://demo.arunayazilim.com:8081/v1/';
+const base = 'http://212.98.224.197:1979/v1/';
 export const baseUrl = base + 'api/';

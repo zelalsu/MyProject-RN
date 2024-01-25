@@ -32,10 +32,9 @@ export const VerticalDash = () => {
 
 const styles = StyleSheet.create({
   horizontal: {
-    width: 4,
+    width: 5,
     height: 2,
     marginVertical: 10,
-    borderRadius: 21,
     opacity: 0.5,
   },
   verticalDash: {

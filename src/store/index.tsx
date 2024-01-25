@@ -26,13 +26,13 @@ import {shopApi} from './api/shop';
 // Api
 
 const rootReducer = combineReducers({
-  [loginApi.reducerPath]: loginApi.reducer,
-  [userListApi.reducerPath]: userListApi.reducer,
-  [shopApi.reducerPath]: shopApi.reducer,
   user: userReducer,
   theme: themeReducer,
   language: languageReducer,
   route: routeReducer,
+  [loginApi.reducerPath]: loginApi.reducer,
+  // [userListApi.reducerPath]: userListApi.reducer,
+  // [shopApi.reducerPath]: shopApi.reducer,
   [apiMiddleware.reducerPath]: apiMiddleware.reducer,
 });
 const persistConfig = {
@@ -57,6 +57,7 @@ export const store = configureStore({
       },
     }).concat(
       thunk,
+      apiMiddleware.middleware,
       loginApi.middleware,
       apiMiddleware.middleware,
       userListApi.middleware,

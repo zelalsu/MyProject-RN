@@ -10,7 +10,6 @@ const getStyles = (theme: MyTheme) =>
     },
     userInfoContainer: {
       marginVertical: 40,
-
       marginHorizontal: 20,
       justifyContent: 'center',
     },

@@ -1,16 +1,13 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@src/store';
 import {setUserInitialState} from '@src/store/slices/user';
 import {setRoute} from '@src/store/slices/route';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import style from './style';
-import splash from '../../../assets/image/splash.jpeg';
+
 import {window} from '@src/constant/dimension';
 import getStyles from './style';
-import Logo from '@assets/svg/aruna-deppo.svg';
-import CustomButton from '@src/components/UI/CustomBottom';
 
 const SplashScreen = () => {
   const storedUserInfo = useAppSelector(state => state.user.user);

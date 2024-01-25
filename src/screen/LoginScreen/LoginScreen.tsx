@@ -22,14 +22,14 @@ import {useAppSelector} from '../../store';
 import getStyles from './style';
 
 import {useTheme} from '@react-navigation/native';
-import Logo from '@assets/svg/aruna-deppo.svg';
 import CustomButton from '@src/components/UI/CustomBottom';
-import Icon from 'react-native-vector-icons/Fontisto';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import CustomCheckbox from '@src/components/UI/CustomCheckBox';
+
 const LoginScreen = () => {
   const [login, setLogin] = useState({
     username: 'utku.utkan@arunayazilim.com',
-    password: 'Arn2014.,',
+    password: 'uu1612.,',
   });
   const storedUserInfo = useAppSelector(state => state.user.user);
   const [loginApiTrigger] = useLazyLoginQuery();
@@ -59,16 +59,15 @@ const LoginScreen = () => {
     errorHandler: (error: any) => {
       setLoading(false); // Set loading to false on error
 
-      console.log(error.data.message);
+      console.log(error);
     },
   });
 
   const loginHandler = () => {
     if (login.username !== '' && login.password !== '') {
       setLoading(true); // Set loading to true before making the API call
-
       loginApiTrigger({
-        username: login.username.toLowerCase(),
+        username: login.username,
         password: login.password,
       }).then(res => {
         apiResponse.apiResponseHandler({res});
@@ -78,8 +77,9 @@ const LoginScreen = () => {
     }
   };
 
+  const [remember, setRemember] = useState<boolean>(true);
+
   const insets = useSafeAreaInsets();
-  const [rememberMe, setRememberMe] = useState(false);
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={style.container}>
@@ -127,22 +127,14 @@ const LoginScreen = () => {
               </Modal>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <TouchableOpacity
-                  style={{flexDirection: 'row', alignItems: 'center', gap: 7}}
-                  activeOpacity={0.8}
-                  onPress={() => setRememberMe(!rememberMe)}>
-                  {rememberMe ? (
-                    <Icon
-                      name="checkbox-active"
-                      size={18}
-                      color={theme.gray[100]}
-                    />
-                  ) : (
-                    <Icon name="checkbox-passive" size={18} color="gray" />
-                  )}
+                <View style={{flexDirection: 'row', gap: 7}}>
+                  <CustomCheckbox
+                    checked={remember}
+                    onChange={() => setRemember(!remember)}
+                  />
+                  <Text>Beni Hatırla</Text>
+                </View>
 
-                  <Text style={style.label}>Beni Hatırla</Text>
-                </TouchableOpacity>
                 <TouchableOpacity>
                   <Text style={style.label}>Şifremi Unuttum</Text>
                 </TouchableOpacity>

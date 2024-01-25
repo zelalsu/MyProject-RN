@@ -10,7 +10,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import LoginScreen from '../screen/LoginScreen/LoginScreen';
 import {TabNavigator} from './tabRoutes';
-import MainScreen from '../screen/MainScreen/MainScreen';
+import MainScreen from '@src/screen/MainScreen/MainScreen';
 import SplashScreen from '@src/screen/SplashScreen';
 import DrawerBar from '@src/components/Drawer';
 import {window} from '@src/constant/dimension';
@@ -20,6 +20,7 @@ import {useTheme} from '@react-navigation/native';
 import {MyTheme} from '../constant/types';
 import ProfileScreen from '@src/screen/ProfileScreen';
 import ContactScreen from '@src/screen/ContactScreen';
+import CustomerDetails from '../screen/MainCategories/CustomerScreen/CustomerDetails/index';
 
 const Root = createNativeStackNavigator<RootStackParams>();
 const Auth = createNativeStackNavigator<RootStackParams>();
@@ -39,6 +40,12 @@ export function RootNavigator() {
         options={{animation: 'slide_from_bottom', presentation: 'modal'}}
         name="DenemeScreen"
         component={DenemeScreen}
+      />
+
+      <Root.Screen
+        options={{animation: 'slide_from_bottom', presentation: 'modal'}}
+        name="CustomerDetails"
+        component={CustomerDetails}
       />
     </Root.Navigator>
   );

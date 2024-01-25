@@ -11,7 +11,13 @@ export const loginApi = apiMiddleware.injectEndpoints({
         body: patch,
       }),
     }),
+    logout: builder.query<void, void>({
+      query: () => ({
+        url: 'Auth/signout',
+        method: 'POST',
+      }),
+    }),
   }),
   overrideExisting: true,
 });
-export const {useLazyLoginQuery} = loginApi;
+export const {useLazyLoginQuery, useLazyLogoutQuery} = loginApi;

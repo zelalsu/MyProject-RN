@@ -55,7 +55,7 @@ const Header = ({
     stroke:
       leftOptions && leftOptions.strokeOptions?.color
         ? leftOptions.strokeOptions.color
-        : theme.black,
+        : theme.white,
     strokeWidth:
       leftOptions && leftOptions.strokeOptions?.width
         ? leftOptions.strokeOptions.width
@@ -63,7 +63,7 @@ const Header = ({
     fill:
       leftOptions && leftOptions.fillOptions?.color
         ? leftOptions.fillOptions.color
-        : theme.black,
+        : theme.white,
   };
 
   const leftShown =
@@ -95,7 +95,7 @@ const Header = ({
           {leftOptions?.icon ? (
             leftOptions.icon
           ) : presentation === 'close' ? (
-            <Close width={25} height={25} {...iconOptions} />
+            <Close {...iconOptions} />
           ) : (
             <Back {...iconOptions} />
           )}
@@ -132,13 +132,22 @@ const Header = ({
 const getStyles = (theme: MyTheme) =>
   StyleSheet.create({
     container: {
-      backgroundColor: theme.gray[800],
+      backgroundColor: 'rgba(80, 100, 110, 0.8)', // Renk ve şeffaflık değeri
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
       paddingBottom: 10,
-      borderBottomLeftRadius: 20,
-      borderBottomRightRadius: 20,
+      borderBottomLeftRadius: 16,
+      borderBottomRightRadius: 16,
+      // shadowColor: '#000',
+      // shadowOffset: {
+      //   width: 0,
+      //   height: 2,
+      // },
+      // shadowOpacity: 0.25,
+      // shadowRadius: 3.84,
+
+      // elevation: 5,
     },
     titleContainer: {
       flex: 1,
@@ -161,9 +170,10 @@ const getStyles = (theme: MyTheme) =>
       justifyContent: 'center',
     },
     title: {
-      fontSize: 18,
-      lineHeight: 22,
-      color: theme.gray[100],
+      letterSpacing: 2,
+      fontSize: 20,
+      fontFamily: 'Arial', // Değiştirilen kısım
+      color: 'white',
     },
   });
 

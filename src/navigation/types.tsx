@@ -3,6 +3,7 @@ import type {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {DataParams} from '@src/screen/MainCategories/CustomerScreen';
 
 // NAVIGATION
 export type RootStackParams = {
@@ -12,6 +13,9 @@ export type RootStackParams = {
   TabNavigator: NavigatorScreenParams<TabStackParams>;
   DenemeScreen: undefined;
   Deneme2Screen: undefined;
+  CustomerDetails: {
+    selectedCustomer: DataParams;
+  };
 };
 
 export type TabStackParams = {
