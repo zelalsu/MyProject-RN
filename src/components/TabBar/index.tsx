@@ -5,8 +5,8 @@ import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 //style
 import {useTheme} from '@react-navigation/native';
 import getStyles from './style';
-import Customer from '@assets/svg/customer.svg';
-import Product from '@assets/svg/product.svg';
+import Customer from '@assets/svg/Main/Customer.svg';
+import Product from '@assets/svg/Main/Product.svg';
 
 //icon
 
@@ -36,7 +36,7 @@ const TabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
             );
           }
           if (route.name === 'ProductScreen') {
-            return <Product width={30} height={30} />;
+            return <Product />;
           }
         };
 

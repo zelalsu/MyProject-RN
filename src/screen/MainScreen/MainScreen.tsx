@@ -6,17 +6,17 @@ import {ShopApiParams} from '@src/store/api/types';
 import {DrawerStackScreenProps} from '@src/navigation/types';
 import {DrawerActions, useTheme} from '@react-navigation/native';
 import Drawer from '@assets/svg/Drawer.svg';
-import Customer from '@assets/svg/customer.svg';
-import Product1 from '@assets/svg/Product2.svg';
-import Shopping from '@assets/svg/shopping.svg';
-import Chart from '@assets/svg/Chart.svg';
-import Form from '@assets/svg/Form.svg';
+import Customer from '@assets/svg/Main/Customer.svg';
+import Product from '@assets/svg/Main/Product.svg';
+import Shopping from '@assets/svg/Main/Shopping.svg';
+import Chart from '@assets/svg/Main/Chart.svg';
+import Form from '@assets/svg/Main/Form.svg';
 import {MainStackParams} from '@src/navigation/types';
 import getStyles from './style';
 import {window} from '@src/constant/dimension';
 import {HorizontalDash} from '@src/components/UI/Dash';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import Calender3 from '@assets/svg/Calender3.svg';
+import Calender from '@assets/svg/Main/Calender.svg';
 const MainScreen = ({
   navigation,
 }: DrawerStackScreenProps<'DrawerNavigator', 'MainScreen'>) => {
@@ -60,7 +60,7 @@ const MainScreen = ({
       id: 2,
       title: 'ÜRÜNLER',
       divine: 2,
-      image: Product1,
+      image: Product,
     },
     {
       id: 3,
@@ -84,7 +84,7 @@ const MainScreen = ({
       id: 5,
       title: 'ZİYARET PLANIM',
       divine: 2,
-      image: Calender3,
+      image: Calender,
     },
   ];
 
